@@ -1,26 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #0A0705;
+  --card: #1A0F08;
+  --card-line: rgba(255, 138, 61, 0.14);
+  --bone: #F5EDE4;
+  --ash: #9A8A7C;
+  --ash-dim: #6B5E54;
+  --flame: #FF4D1C;
+  --ember: #FFA62B;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-card: var(--card);
+  --color-card-line: var(--card-line);
+  --color-bone: var(--bone);
+  --color-ash: var(--ash);
+  --color-ash-dim: var(--ash-dim);
+  --color-flame: var(--flame);
+  --color-ember: var(--ember);
+  --font-display: 'Archivo Black', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.flame-text {
+  background: linear-gradient(135deg, var(--flame) 0%, var(--ember) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grad-flame {
+  background: linear-gradient(135deg, var(--flame) 0%, var(--ember) 100%);
+}
+
+.grad-flame-soft {
+  background: linear-gradient(180deg, rgba(255, 77, 28, 0.16), rgba(255, 166, 43, 0.02));
+}
+
+::selection {
+  background: var(--flame);
+  color: #110603;
+}
+
+/* Ember rising particles (signature motif) */
+.ember-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ember {
+  position: absolute;
+  bottom: -10px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 8px 2px rgba(255, 166, 43, 0.7);
+  opacity: 0;
+  animation: rise 7s ease-in infinite;
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(0.6);
+  }
+  10% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-560px) translateX(var(--drift, 30px)) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ember {
+    animation: none;
+    display: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
