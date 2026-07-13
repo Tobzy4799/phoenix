@@ -68,7 +68,7 @@ export default function Navbar() {
             height={32}
             className="rounded-full"
           />
-          <span className="font-display text-[0.95rem] tracking-tight flame-text hidden sm:block">
+          <span className="font-display text-[0.95rem] tracking-tight flame-text ">
             PHOENIX
           </span>
         </Link>
