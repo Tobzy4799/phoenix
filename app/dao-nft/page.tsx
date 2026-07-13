@@ -112,7 +112,7 @@ const STATIC_COLLABS = [
   {
     id: "ramenrumble",
     title: "PHOENIX 🤝 RAMEN RUMBLE",
-    image_url: "/nfts/ramenrumble.jpg",
+    image_url: "/nfts/Ramenrumble.jpg",
     details: "NFT collab with @RamenRumblegame — WL spots for the community.",
     x_handle: "@RamenRumblegame",
     x_link: "https://x.com/RamenRumblegame",
