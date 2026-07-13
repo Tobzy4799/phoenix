@@ -9,9 +9,10 @@ import ScrollReveal, { revealItem } from "@/components/ScrollReveal";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import {
-   
-   Gem, 
-   Flame, Target, MapPin, Mic } from "lucide-react";
+
+  Gem,
+  Flame, Target, MapPin, Mic
+} from "lucide-react";
 
 /* ─── DATA ───────────────────────────────────────────────── */
 
@@ -216,7 +217,7 @@ function EventCard({ event }: { event: (typeof EVENTS)[0] }) {
         </div>
 
         <div className="flex items-start gap-2 mb-3">
-          <span className="text-ember shrink-0 mt-0.5"><MapPin size={16}/></span>
+          <span className="text-ember shrink-0 mt-0.5"><MapPin size={16} /></span>
           <span className="text-ash text-[0.88rem]">{event.location}</span>
         </div>
 
@@ -440,11 +441,11 @@ export default function CampusNetwork() {
             </p>
           </ScrollReveal>
 
-          <ScrollReveal stagger className="flex flex-col gap-8">
+          <div className="flex flex-col gap-8">
             {EVENTS.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -478,7 +479,7 @@ export default function CampusNetwork() {
                   href="/community"
                   className="inline-flex items-center gap-2 rounded-full grad-flame text-[#110603] font-bold text-[0.92rem] px-7 py-3.5 hover:shadow-[0_10px_30px_-8px_rgba(255,77,28,0.55)] transition-shadow"
                 >
-                  <Flame size={16}/> Join the Community
+                  <Flame size={16} /> Join the Community
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
@@ -486,7 +487,7 @@ export default function CampusNetwork() {
                   href="/agency/hire"
                   className="inline-flex items-center gap-2 rounded-full border border-bone/20 text-bone font-bold text-[0.92rem] px-7 py-3.5 hover:border-ember hover:text-ember transition-colors"
                 >
-                  <Gem size={16}/> Work With Us
+                  <Gem size={16} /> Work With Us
                 </Link>
               </motion.div>
             </div>
