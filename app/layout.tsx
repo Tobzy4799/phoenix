@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     title: "Phoenix Ecosystem — Web3 Growth Agency",
     description:
       "Grow your Web3 project with Africa's most connected growth network. KOL campaigns, community management, campus activations & more.",
-    url: "https://your-deployed-url.com",
+    url: "https://phoenix-pearl-seven.vercel.app/",
     siteName: "Phoenix Ecosystem",
     images: [
       {
-        url: "https://your-deployed-url.com/PhoenixLogoalt.jpg",
+        url: "https://phoenix-pearl-seven.vercel.app/PhoenixLogoalt.jpg",
         width: 1200,
         height: 630,
         alt: "Phoenix Ecosystem — Web3 Growth Agency",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Phoenix Ecosystem — Web3 Growth Agency",
     description:
       "Grow your Web3 project with Africa's most connected growth network. KOL campaigns, community management, campus activations & more.",
-    images: ["https://your-deployed-url.com/PhoenixLogoalt.jpg"],
+    images: ["https://phoenix-pearl-seven.vercel.app/PhoenixLogoalt.jpg"],
     creator: "@phoenixxweb3",
     site: "@phoenixxweb3",
   },

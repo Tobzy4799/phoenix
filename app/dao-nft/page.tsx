@@ -306,7 +306,10 @@ function Eyebrow({ children, center }: { children: React.ReactNode; center?: boo
 function CollabCard({ collab }: { collab: Collab }) {
   return (
     <motion.div
-      variants={revealItem}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
       whileHover={{ y: -5, transition: { duration: 0.22 } }}
       className="bg-card border border-card-line rounded-[18px] overflow-hidden group relative"
     >
@@ -593,15 +596,11 @@ useEffect(() => {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal
-            stagger
-            staggerDelay={0.06}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
-          >
-            {collabs.map((collab) => (
-              <CollabCard key={collab.id} collab={collab} />
-            ))}
-          </ScrollReveal>
+         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+  {collabs.map((collab) => (
+    <CollabCard key={collab.id} collab={collab} />
+  ))}
+</div>
         </div>
       </section>
 
