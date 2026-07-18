@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const ITEMS = [
   "27K+ Organic X Followers",
-  "122,900+ Campaign Views",
+  "1M+ Campaign Views",
   "40+ Campus Partners",
   "153K+ Total Reach",
   "1 Year of Proof",

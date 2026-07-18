@@ -28,7 +28,7 @@ const EVENTS = [
     sponsors: ["@phoenixxweb3", "@axioflo"],
     sponsorLinks: ["https://x.com/phoenixxweb3", "https://x.com/axioflo"],
     description:
-      "A summit focused on empowering builders and accelerating the growth of Web3 projects, especially in emerging markets. Through strategic support, community-driven initiatives, and a focus on real-world impact, Phoenix and Axioflow brought together founders and builders to turn bold ideas into scalable solutions — creating opportunities, driving adoption, and building a future where innovation is accessible to all.",
+      "A summit focused on empowering builders and accelerating the growth of Web3 projects, especially in emerging markets. Through strategic support, community-driven initiatives, and a focus on real-world impact, Phoenix and Axioflow brought together founders and builders to turn bold ideas into scalable solutions while creating opportunities, driving adoption, and building a future where innovation is accessible to all.",
     banner: "/events/axioflow-banner.jpg",
     galleryCount: 4,
     galleryPrefix: "/events/axioflow",
@@ -90,7 +90,7 @@ const EVENTS = [
 
 const STATS = [
   { n: "40+", label: "Campus Partners" },
-  { n: "3", label: "IRL Events" },
+  { n: "4", label: "IRL Events" },
   { n: "2", label: "Countries" },
   { n: "Active", label: "Status" },
 ];

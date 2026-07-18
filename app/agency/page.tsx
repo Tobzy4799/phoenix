@@ -44,12 +44,12 @@ const SERVICES = [
   {
     icon: "mic2",
     title: "KOL Activations",
-    desc: "We tap into a vetted network of Web3 key opinion leaders who actually move audiences — not accounts with bought followers. Every activation is documented with receipts.",
+    desc: "We tap into a vetted network of Web3 key opinion leaders who actually move audiences and not accounts with bought followers. Every activation is documented with receipts.",
   },
   {
     icon: "pencil",
     title: "Content & Narrative Strategy",
-    desc: "Consistent, on-brand X content, threads, and long-form that builds a project's voice over time — not just for launch week.",
+    desc: "Consistent, on-brand X content, threads, and long-form that builds a project's voice over time, not just for launch week.",
   },
   {
     icon: "message",
@@ -69,7 +69,7 @@ const SERVICES = [
   {
     icon: "trendingup",
     title: "Performance Reporting",
-    desc: "Every campaign closes with a transparent report — views, reach, wallet signups, community growth. Data you can actually show your investors.",
+    desc: "Every campaign closes with a transparent report on  views, reach, wallet signups, community growth. Data you can actually show your investors.",
   },
 ];
 
@@ -142,7 +142,7 @@ const CASE_STUDIES = [
     id: "blindboy",
     project: "BlindBoy",
     date: "May 30, 2025",
-    xHandle: "@blindboy",
+    xHandle: "",
     xLink: "",
     postLink: "https://x.com/_lexkhalifa/status/1928526992615301553",
     contribution:
@@ -152,13 +152,13 @@ const CASE_STUDIES = [
       { label: "Comments", value: "155" },
       { label: "Live Listeners", value: "1.4K" },
     ],
-    image: "/PhoenixLogoalt.jpg",
+    image: "/Blindboy.jpg",
   },
   {
     id: "prizmoai",
     project: "PrizmoAI",
     date: "August 16, 2025",
-    xHandle: "@prizmoai",
+    xHandle: "",
     xLink: "",
     postLink: "",
     contribution:
@@ -168,13 +168,13 @@ const CASE_STUDIES = [
       { label: "Comments", value: "121" },
       { label: "Referrals", value: "570+" },
     ],
-    image:"/PhoenixLogoalt.jpg",
+    image:"/Prizmo.jpg",
   },
   {
     id: "coincola",
     project: "CoinCola",
     date: "May 14, 2025",
-    xHandle: "@coincola",
+    xHandle: "",
     xLink: "",
     postLink: "",
     contribution:
@@ -185,13 +185,13 @@ const CASE_STUDIES = [
       { label: "TG Members", value: "780+" },
       { label: "Signups", value: "4K+" },
     ],
-    image: "/PhoenixLogoalt.jpg",
+    image: "/Coincola.jpg",
   },
   {
     id: "bybit",
     project: "Bybit",
     date: "May 21, 2025",
-    xHandle: "@bybit",
+    xHandle: "",
     xLink: "",
     postLink: "",
     contribution:
@@ -200,13 +200,13 @@ const CASE_STUDIES = [
       { label: "Post Views", value: "27.7K" },
       { label: "Comments", value: "177" },
     ],
-    image: "/PhoenixLogoalt.jpg",
+    image: "/Bybit.jpg",
   },
   {
     id: "minibags",
     project: "MiniBags",
     date: "May 11, 2025",
-    xHandle: "@minibags",
+    xHandle: "",
     xLink: "",
     postLink: "",
     contribution:
@@ -217,7 +217,7 @@ const CASE_STUDIES = [
       { label: "Scheduled", value: "809" },
       { label: "Total Tuned In", value: "2.5K" },
     ],
-    image: "/PhoenixLogoalt.jpg",
+    image: "/Minibags.jpg",
   },
 ];
 
@@ -269,7 +269,7 @@ const WHY_PROJECTS = [
 ];
 
 const WHY_CREATORS = [
-  "Get matched with real paid campaigns from vetted Web3 projects — not unpaid exposure gigs.",
+  "Get matched with real paid campaigns from vetted Web3 projects, not unpaid exposure gigs.",
   "Training through Phoenix Academy means you get better briefs, better rates, and repeat work.",
   "Join a community of 27K+ organic followers and hundreds of active creators across Africa.",
   "Campus Leads, Community Managers, Content Writers, KOLs, there's a role that fits your strengths.",

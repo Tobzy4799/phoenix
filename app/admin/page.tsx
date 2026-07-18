@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-type Tab = "hire" | "join" | "collabs";
+type Tab = "hire" | "join" | "collabs" | "users";
 type Status = "new" | "reviewed" | "accepted" | "rejected";
 
 type Submission = {
@@ -24,6 +24,12 @@ type Collab = {
   x_link: string;
   post_link: string;
   winners_link: string;
+  created_at: string;
+};
+
+type Member = {
+  id: string;
+  email: string;
   created_at: string;
 };
 
@@ -51,6 +57,8 @@ export default function AdminPage() {
   const [hireData, setHireData] = useState<Submission[]>([]);
   const [joinData, setJoinData] = useState<Submission[]>([]);
   const [collabs, setCollabs] = useState<Collab[]>([]);
+  const [members, setMembers] = useState<Member[]>([]);
+  const [userCount, setUserCount] = useState(0);
   const [selected, setSelected] = useState<Submission | null>(null);
   const [loading, setLoading] = useState(true);
   const [updatingStatus, setUpdatingStatus] = useState(false);
@@ -58,14 +66,17 @@ export default function AdminPage() {
   useEffect(() => {
     async function load() {
       setLoading(true);
-      const [h, j, c] = await Promise.all([
+      const [h, j, c, usersData] = await Promise.all([
         fetch("/api/submissions/hire").then((r) => r.json()),
         fetch("/api/submissions/join").then((r) => r.json()),
         fetch("/api/collabs").then((r) => r.json()),
+        fetch("/api/admin/users").then((r) => r.json()),
       ]);
       setHireData(h);
       setJoinData(j);
       setCollabs(c);
+      setMembers(usersData.users ?? []);
+      setUserCount(usersData.count ?? 0);
       setLoading(false);
     }
     load();
@@ -98,6 +109,11 @@ export default function AdminPage() {
     setCollabs((prev) => prev.filter((c) => c.id !== id));
   }
 
+  async function handleLogout() {
+    await fetch("/api/admin/logout", { method: "POST" });
+    window.location.href = "/admin/login";
+  }
+
   const counts = {
     hireNew: hireData.filter((s) => s.status === "new").length,
     joinNew: joinData.filter((s) => s.status === "new").length,
@@ -115,18 +131,14 @@ export default function AdminPage() {
       : (s.data.audienceSize as string) || "";
   }
 
-  async function handleLogout() {
-    await fetch("/api/admin/logout", { method: "POST" });
-    window.location.href = "/admin/login";
-  }
   return (
     <div className="min-h-screen bg-ink text-bone font-body">
+
       {/* Top bar */}
       <div className="border-b border-card-line bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-[1400px] mx-auto px-4 md:px-6 h-[60px] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            {/* Mobile: back button when detail is open, otherwise compact logo */}
-            {selected && tab !== "collabs" ? (
+            {selected && tab !== "collabs" && tab !== "users" ? (
               <button
                 onClick={() => setSelected(null)}
                 className="md:hidden flex items-center gap-1.5 text-ash hover:text-ember transition-colors text-[0.88rem] font-semibold"
@@ -145,8 +157,6 @@ export default function AdminPage() {
                 <span className="font-mono text-[0.72rem] text-ember">Admin</span>
               </div>
             )}
-
-            {/* Desktop: full logo */}
             <div className="hidden md:flex items-center gap-2.5">
               <Image
                 src="/PhoenixLogo.jpg"
@@ -161,44 +171,49 @@ export default function AdminPage() {
             </div>
           </div>
 
-          {/* Submission + collab count — shortened on mobile */}
-          <div className="font-mono text-[0.68rem] text-ash-dim text-right">
-            <span className="hidden sm:inline">
-              {hireData.length + joinData.length} submissions · {collabs.length} collabs
-            </span>
-            <span className="sm:hidden">
-              {hireData.length + joinData.length + collabs.length} total
-            </span>
+          <div className="flex items-center gap-3">
+            <div className="font-mono text-[0.68rem] text-ash-dim text-right">
+              <span className="hidden sm:inline">
+                {hireData.length + joinData.length} submissions · {collabs.length} collabs · {userCount} members
+              </span>
+              <span className="sm:hidden">
+                {hireData.length + joinData.length + collabs.length} total
+              </span>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="font-mono text-[0.7rem] uppercase tracking-wider text-ash-dim hover:text-flame transition-colors border border-card-line hover:border-flame/30 rounded-full px-3 py-1 whitespace-nowrap"
+            >
+              Logout
+            </button>
           </div>
-          <button
-            onClick={handleLogout}
-            className="font-mono text-[0.7rem] uppercase tracking-wider text-ash-dim hover:text-flame transition-colors border border-card-line hover:border-flame/30 rounded-full px-3 py-1 whitespace-nowrap"
-          >
-            Logout
-          </button>
         </div>
       </div>
 
-      {/* Tab bar — always visible */}
+      {/* Tab bar */}
       <div className="border-b border-card-line bg-ink sticky top-[60px] z-40">
-        <div className="max-w-[1400px] mx-auto px-3 md:px-6 flex py-2.5">
-          {(["hire", "join", "collabs"] as Tab[]).map((t) => (
+        <div className="max-w-[1400px] mx-auto px-3 md:px-6 flex py-2.5 gap-1.5">
+          {(["hire", "join", "collabs", "users"] as Tab[]).map((t) => (
             <button
               key={t}
-              onClick={() => {
-                setTab(t);
-                setSelected(null);
-              }}
-              className={`flex-1 flex items-center justify-center gap-1.5 px-2 py-2 rounded-[10px] font-semibold text-[0.72rem] md:text-[0.82rem] border transition-all ${tab === t
+              onClick={() => { setTab(t); setSelected(null); }}
+              className={`flex-1 flex items-center justify-center gap-1.5 px-2 py-2 rounded-[10px] font-semibold text-[0.72rem] md:text-[0.82rem] border transition-all ${
+                tab === t
                   ? "grad-flame text-[#110603] border-transparent"
                   : "border-card-line text-ash hover:border-ember hover:text-ember"
-                }`}
+              }`}
             >
               <span className="hidden sm:inline">
-                {t === "hire" ? "🚀 Campaigns" : t === "join" ? "✦ Applications" : "🖼️ NFT Collabs"}
+                {t === "hire"
+                  ? "🚀 Campaigns"
+                  : t === "join"
+                  ? "✦ Applications"
+                  : t === "collabs"
+                  ? "🖼️ NFT Collabs"
+                  : `👥 Members (${userCount})`}
               </span>
               <span className="sm:hidden">
-                {t === "hire" ? "🚀 Campaigns" : t === "join" ? "✦ Apply" : "🖼️ NFTs"}
+                {t === "hire" ? "🚀" : t === "join" ? "✦" : t === "collabs" ? "🖼️" : "👥"}
               </span>
               {t === "hire" && counts.hireNew > 0 && (
                 <span className="bg-flame text-white text-[0.6rem] font-bold rounded-full px-1.5 py-0.5">
@@ -219,8 +234,6 @@ export default function AdminPage() {
       {tab === "collabs" && (
         <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 items-start">
-
-            {/* Collab list */}
             <div>
               <h2 className="font-display text-[1.4rem] mb-6">
                 NFT Collabs{" "}
@@ -228,7 +241,6 @@ export default function AdminPage() {
                   ({collabs.length})
                 </span>
               </h2>
-
               {loading ? (
                 <p className="text-ash text-[0.9rem]">Loading...</p>
               ) : collabs.length === 0 ? (
@@ -245,6 +257,7 @@ export default function AdminPage() {
                           src={c.image_url}
                           alt={c.title}
                           fill
+                          sizes="80px"
                           className="object-cover"
                         />
                       </div>
@@ -265,8 +278,8 @@ export default function AdminPage() {
                               {c.x_handle}
                             </span>
                           )}
-
-                          <a href={c.post_link}
+                          
+                           <a href={c.post_link}
                             target="_blank"
                             rel="noreferrer"
                             className="font-mono text-[0.68rem] text-ember hover:text-bone transition-colors"
@@ -274,8 +287,8 @@ export default function AdminPage() {
                             Post ↗
                           </a>
                           {c.winners_link && (
-
-                            <a href={c.winners_link}
+                            
+                             <a href={c.winners_link}
                               target="_blank"
                               rel="noreferrer"
                               className="font-mono text-[0.68rem] text-ash-dim hover:text-ember transition-colors"
@@ -293,8 +306,6 @@ export default function AdminPage() {
                 </div>
               )}
             </div>
-
-            {/* Add collab form */}
             <div className="lg:sticky lg:top-[120px]">
               <AddCollabForm
                 onAdded={(newCollab) => setCollabs((prev) => [newCollab, ...prev])}
@@ -304,8 +315,69 @@ export default function AdminPage() {
         </div>
       )}
 
+      {/* ── USERS TAB ── */}
+      {tab === "users" && (
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-8">
+          <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+            <h2 className="font-display text-[1.4rem]">
+              Members{" "}
+              <span className="text-ash font-mono text-[0.8rem] font-normal">
+                ({members.length})
+              </span>
+            </h2>
+            <p className="font-mono text-[0.72rem] text-ash-dim">
+              Signed up users with access to gated pages
+            </p>
+          </div>
+
+          {loading ? (
+            <p className="text-ash text-[0.9rem]">Loading...</p>
+          ) : members.length === 0 ? (
+            <p className="text-ash text-[0.9rem]">No members yet.</p>
+          ) : (
+            <div className="bg-card border border-card-line rounded-[18px] overflow-hidden">
+              {/* Header */}
+              <div className="grid grid-cols-3 gap-4 px-6 py-3 border-b border-card-line bg-ink/40">
+                <span className="font-mono text-[0.68rem] uppercase tracking-wider text-ash-dim">
+                  Email
+                </span>
+                <span className="font-mono text-[0.68rem] uppercase tracking-wider text-ash-dim">
+                  Joined
+                </span>
+                <span className="font-mono text-[0.68rem] uppercase tracking-wider text-ash-dim">
+                  User ID
+                </span>
+              </div>
+              {/* Rows */}
+              {members.map((u, i) => (
+                <div
+                  key={u.id}
+                  className={`grid grid-cols-3 gap-4 px-6 py-4 items-center ${
+                    i !== members.length - 1 ? "border-b border-card-line" : ""
+                  }`}
+                >
+                  <span className="text-bone text-[0.88rem] font-semibold truncate">
+                    {u.email}
+                  </span>
+                  <span className="text-ash text-[0.82rem] font-mono">
+                    {new Date(u.created_at).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </span>
+                  <span className="text-ash-dim text-[0.72rem] font-mono truncate">
+                    {u.id.slice(0, 8)}...
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* ── SUBMISSIONS TABS (hire / join) ── */}
-      {tab !== "collabs" && (
+      {tab !== "collabs" && tab !== "users" && (
         <>
           {/* DESKTOP */}
           <div className="hidden md:flex max-w-[1400px] mx-auto px-6 py-8 gap-6 h-[calc(100vh-120px)]">
@@ -391,9 +463,7 @@ function AddCollabForm({ onAdded }: { onAdded: (c: Collab) => void }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const fileRef = useRef<HTMLInputElement>(null);
 
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
@@ -408,19 +478,14 @@ function AddCollabForm({ onAdded }: { onAdded: (c: Collab) => void }) {
     e.preventDefault();
     if (!imageFile) return;
     setStatus("submitting");
-
     try {
       const fd = new FormData();
       fd.append("image", imageFile);
       Object.entries(form).forEach(([k, v]) => fd.append(k, v));
-
       const res = await fetch("/api/collabs", { method: "POST", body: fd });
       if (!res.ok) throw new Error();
-
-      // Refetch latest to get the new collab with its id and image_url
       const latest = await fetch("/api/collabs").then((r) => r.json());
       onAdded(latest[0]);
-
       setForm({ title: "", details: "", x_handle: "", x_link: "", post_link: "", winners_link: "" });
       setImageFile(null);
       setPreview(null);
@@ -435,21 +500,19 @@ function AddCollabForm({ onAdded }: { onAdded: (c: Collab) => void }) {
   return (
     <div className="bg-card border border-card-line rounded-[18px] p-6">
       <h3 className="font-display text-[1.1rem] mb-5">Add New Collab</h3>
-
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-
-        {/* Image upload */}
         <div>
           <span className="text-[0.82rem] font-semibold text-bone block mb-2">
             Collab Image <span className="text-flame">*</span>
           </span>
           <div
             onClick={() => fileRef.current?.click()}
-            className={`relative w-full aspect-video rounded-[12px] border-2 border-dashed cursor-pointer transition-colors overflow-hidden ${preview ? "border-ember" : "border-card-line hover:border-ember/50"
-              }`}
+            className={`relative w-full aspect-video rounded-[12px] border-2 border-dashed cursor-pointer transition-colors overflow-hidden ${
+              preview ? "border-ember" : "border-card-line hover:border-ember/50"
+            }`}
           >
             {preview ? (
-              <Image src={preview} alt="Preview" fill className="object-cover" />
+              <Image src={preview} alt="Preview" fill sizes="400px" className="object-cover" />
             ) : (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
                 <span className="text-2xl">🖼️</span>
@@ -469,7 +532,6 @@ function AddCollabForm({ onAdded }: { onAdded: (c: Collab) => void }) {
           />
         </div>
 
-        {/* Title */}
         <label className="flex flex-col gap-1.5">
           <span className="text-[0.82rem] font-semibold text-bone">
             Title <span className="text-flame">*</span>
@@ -484,7 +546,6 @@ function AddCollabForm({ onAdded }: { onAdded: (c: Collab) => void }) {
           />
         </label>
 
-        {/* Details */}
         <label className="flex flex-col gap-1.5">
           <span className="text-[0.82rem] font-semibold text-bone">
             Details <span className="text-flame">*</span>
@@ -500,7 +561,6 @@ function AddCollabForm({ onAdded }: { onAdded: (c: Collab) => void }) {
           />
         </label>
 
-        {/* X Handle + X Link */}
         <div className="grid grid-cols-2 gap-3">
           <label className="flex flex-col gap-1.5">
             <span className="text-[0.82rem] font-semibold text-bone">X Handle</span>
@@ -524,7 +584,6 @@ function AddCollabForm({ onAdded }: { onAdded: (c: Collab) => void }) {
           </label>
         </div>
 
-        {/* Post link */}
         <label className="flex flex-col gap-1.5">
           <span className="text-[0.82rem] font-semibold text-bone">
             X Post Link <span className="text-flame">*</span>
@@ -539,7 +598,6 @@ function AddCollabForm({ onAdded }: { onAdded: (c: Collab) => void }) {
           />
         </label>
 
-        {/* Winners link */}
         <label className="flex flex-col gap-1.5">
           <span className="text-[0.82rem] font-semibold text-bone">
             Winners Post Link{" "}
@@ -559,7 +617,6 @@ function AddCollabForm({ onAdded }: { onAdded: (c: Collab) => void }) {
             Something went wrong. Try again.
           </p>
         )}
-
         {status === "success" && (
           <p className="text-green-400 text-[0.84rem] text-center">
             ✓ Collab added successfully
@@ -609,10 +666,11 @@ function SubmissionList({
         <button
           key={s.id}
           onClick={() => setSelected(s)}
-          className={`w-full text-left p-4 rounded-[12px] border transition-all ${selected?.id === s.id
+          className={`w-full text-left p-4 rounded-[12px] border transition-all ${
+            selected?.id === s.id
               ? "border-ember bg-card"
               : "border-card-line bg-card/50 hover:border-ember/50"
-            }`}
+          }`}
         >
           <div className="flex items-start justify-between gap-2">
             <span className="font-semibold text-[0.92rem] text-bone truncate">
@@ -696,10 +754,11 @@ function DetailPanel({
                   key={st}
                   disabled={updatingStatus}
                   onClick={() => updateStatus(selected.id, st)}
-                  className={`text-[0.7rem] font-mono font-bold px-2.5 py-1 rounded-full border transition-all disabled:opacity-50 ${selected.status === st
+                  className={`text-[0.7rem] font-mono font-bold px-2.5 py-1 rounded-full border transition-all disabled:opacity-50 ${
+                    selected.status === st
                       ? STATUS_STYLES[st]
                       : "border-card-line text-ash-dim hover:border-ash"
-                    }`}
+                  }`}
                 >
                   {st}
                 </button>
@@ -707,7 +766,6 @@ function DetailPanel({
             </div>
           </div>
         </div>
-
         {selected.type === "hire" ? (
           <HireDetail data={selected.data} />
         ) : (

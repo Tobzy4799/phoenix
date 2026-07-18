@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import AuthButton from "./AuthButton";
 
 const LINKS = [
   { href: "/agency", label: "Agency" },
@@ -37,7 +38,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  
+
   function isActive(href: string) {
     return pathname === href || pathname.startsWith(href + "/");
   }
@@ -47,11 +48,10 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className={`sticky top-0 z-[100] transition-all duration-300 ${
-        scrolled
+      className={`sticky top-0 z-[100] transition-all duration-300 ${scrolled
           ? "bg-ink/85 backdrop-blur-md border-b border-card-line"
           : "bg-transparent border-b border-transparent"
-      }`}
+        }`}
     >
       <div className="max-w-[1180px] mx-auto px-5 h-[68px] flex items-center justify-between gap-4">
 
@@ -81,36 +81,33 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`relative text-[0.82rem] xl:text-[0.88rem] font-semibold transition-colors group whitespace-nowrap ${
-                  active ? "text-ember" : "text-ash hover:text-ember"
-                }`}
+                className={`relative text-[0.82rem] xl:text-[0.88rem] font-semibold transition-colors group whitespace-nowrap ${active ? "text-ember" : "text-ash hover:text-ember"
+                  }`}
               >
                 {l.label}
                 <span
-                  className={`absolute left-0 -bottom-1 h-px grad-flame transition-all duration-300 ${
-                    active ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
+                  className={`absolute left-0 -bottom-1 h-px grad-flame transition-all duration-300 ${active ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
                 />
               </Link>
             );
           })}
           <Link
             href="/contact"
-            className={`relative text-[0.82rem] xl:text-[0.88rem] font-semibold transition-colors group whitespace-nowrap ${
-              isActive("/contact") ? "text-ember" : "text-ash hover:text-ember"
-            }`}
+            className={`relative text-[0.82rem] xl:text-[0.88rem] font-semibold transition-colors group whitespace-nowrap ${isActive("/contact") ? "text-ember" : "text-ash hover:text-ember"
+              }`}
           >
             Contact
             <span
-              className={`absolute left-0 -bottom-1 h-px grad-flame transition-all duration-300 ${
-                isActive("/contact") ? "w-full" : "w-0 group-hover:w-full"
-              }`}
+              className={`absolute left-0 -bottom-1 h-px grad-flame transition-all duration-300 ${isActive("/contact") ? "w-full" : "w-0 group-hover:w-full"
+                }`}
             />
           </Link>
         </nav>
 
         {/* Desktop right actions — only on lg+ */}
         <div className="hidden lg:flex items-center gap-3 shrink-0">
+          <AuthButton />
           <motion.a
             href={WHATSAPP_LINK}
             target="_blank"
@@ -160,9 +157,8 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className={`py-3 text-[0.95rem] font-semibold border-b border-card-line/50 ${
-                    isActive(l.href) ? "text-ember" : "text-bone"
-                  }`}
+                  className={`py-3 text-[0.95rem] font-semibold border-b border-card-line/50 ${isActive(l.href) ? "text-ember" : "text-bone"
+                    }`}
                 >
                   {l.label}
                 </Link>
@@ -170,15 +166,16 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className={`py-3 text-[0.95rem] font-semibold border-b border-card-line/50 ${
-                  isActive("/contact") ? "text-ember" : "text-bone"
-                }`}
+                className={`py-3 text-[0.95rem] font-semibold border-b border-card-line/50 ${isActive("/contact") ? "text-ember" : "text-bone"
+                  }`}
               >
                 Contact
               </Link>
 
-              
-              <a  href={WHATSAPP_LINK}
+              <div className="py-3 border-b border-card-line/50">
+                <AuthButton />
+              </div>
+              <a href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => setOpen(false)}
@@ -188,8 +185,8 @@ export default function Navbar() {
                 Chat on WhatsApp
               </a>
 
-              
-               <a href={CALENDLY_LINK}
+
+              <a href={CALENDLY_LINK}
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => setOpen(false)}

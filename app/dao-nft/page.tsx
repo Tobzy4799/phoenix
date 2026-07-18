@@ -10,17 +10,18 @@ import ScrollReveal, { revealItem } from "@/components/ScrollReveal";
 import MotionCard from "@/components/MotionCard";
 import { motion } from "framer-motion";
 import {
-   Megaphone,
-   Users, 
-   TrendingUp, 
-   GraduationCap, 
-   Palette, 
-   Globe, 
-   Zap, 
-   Gem, 
-   Handshake, 
-   House, 
-   MessageCircle, Search, Send, Sparkles } from "lucide-react";
+  Megaphone,
+  Users,
+  TrendingUp,
+  GraduationCap,
+  Palette,
+  Globe,
+  Zap,
+  Gem,
+  Handshake,
+  House,
+  MessageCircle, Search, Send, Sparkles
+} from "lucide-react";
 
 
 const ICON_MAP: Record<string, React.ReactNode> = {
@@ -77,7 +78,7 @@ const WHAT_WE_DO = [
   {
     icon: "globe",
     title: "Ecosystem Visibility",
-    desc: "Phoenix NFT represents the broader Phoenix Ecosystem inside NFT spaces. We are credible, consistent, and community-first.",
+    desc: "Phoenix DAO represents the broader Phoenix Ecosystem inside NFT spaces. We are credible, consistent, and community-first.",
   },
   {
     icon: "search",
@@ -91,7 +92,7 @@ const STATIC_COLLABS = [
     id: "auraonhypernft",
     title: "PHOENIX 🤝 AURA",
     image_url: "/nfts/auraonhypernft.jpg",
-    details: "NFT collab with @AuraOnHyperNFT — whitelist raffle for the community.",
+    details: "NFT collab with @AuraOnHyperNFT with whitelist raffle for the community.",
     x_handle: "@AuraOnHyperNFT",
     x_link: "https://x.com/AuraOnHyperNFT",
     post_link: "https://x.com/phoenixxweb3/status/1936432850678792642",
@@ -102,7 +103,7 @@ const STATIC_COLLABS = [
     id: "jpegsdotcats",
     title: "PHOENIX 🤝 JPEG O' CATS",
     image_url: "/nfts/jpegsdotcats.jpg",
-    details: "NFT collab with @jpegsdotcats — 5 WL spots for their upcoming mint.",
+    details: "NFT collab with @jpegsdotcats with 5 WL spots for their upcoming mint.",
     x_handle: "@jpegsdotcats",
     x_link: "https://x.com/jpegsdotcats",
     post_link: "https://x.com/phoenixxweb3/status/1935796542918869065",
@@ -113,7 +114,7 @@ const STATIC_COLLABS = [
     id: "ramenrumble",
     title: "PHOENIX 🤝 RAMEN RUMBLE",
     image_url: "/nfts/Ramenrumble.jpg",
-    details: "NFT collab with @RamenRumblegame — WL spots for the community.",
+    details: "NFT collab with @RamenRumblegame with WL spots for the community.",
     x_handle: "@RamenRumblegame",
     x_link: "https://x.com/RamenRumblegame",
     post_link: "https://x.com/phoenixxweb3/status/1937538101410226485",
@@ -124,7 +125,7 @@ const STATIC_COLLABS = [
     id: "hypercubs",
     title: "PHOENIX 🤝 HYPERCUBS",
     image_url: "/nfts/hypercubs.jpg",
-    details: "NFT collab with @hypercubs — WL spots for their upcoming mint.",
+    details: "NFT collab with @hypercubs with WL spots for their upcoming mint.",
     x_handle: "@hypercubs",
     x_link: "https://x.com/hypercubs",
     post_link: "https://x.com/phoenixxdao/status/1937916839046078890",
@@ -135,7 +136,7 @@ const STATIC_COLLABS = [
     id: "megaeth",
     title: "PHOENIX 🤝 MEGAETH_INTEL",
     image_url: "/nfts/megaeth.jpg",
-    details: "NFT collab with @megaeth_intel — 3 GTD spots for the community.",
+    details: "NFT collab with @megaeth_intel with 3 GTD spots for the community.",
     x_handle: "@megaeth_intel",
     x_link: "https://x.com/megaeth_intel",
     post_link: "https://x.com/phoenixxweb3/status/1940037789405655158",
@@ -146,7 +147,7 @@ const STATIC_COLLABS = [
     id: "nozra",
     title: "PHOENIX 🤝 NOZRA",
     image_url: "/nfts/nozra.jpg",
-    details: "NFT collab with @NozraZK — 2 FCFS spots for their upcoming mint on Anoma.",
+    details: "NFT collab with @NozraZK with 2 FCFS spots for their upcoming mint on Anoma.",
     x_handle: "@NozraZK",
     x_link: "https://x.com/NozraZK",
     post_link: "https://x.com/phoenixxweb3/status/1939771683793248361",
@@ -157,7 +158,7 @@ const STATIC_COLLABS = [
     id: "liquidonhl",
     title: "PHOENIX 🤝 LIQUIDONHL",
     image_url: "/nfts/liquidonhl.jpg",
-    details: "NFT collab with @LiquidsOnHL — 7 WL spots for their upcoming mint.",
+    details: "NFT collab with @LiquidsOnHL with 7 WL spots for their upcoming mint.",
     x_handle: "@LiquidsOnHL",
     x_link: "https://x.com/LiquidsOnHL",
     post_link: "https://x.com/phoenixxweb3/status/1940311259167261081",
@@ -168,7 +169,7 @@ const STATIC_COLLABS = [
     id: "pawpalz",
     title: "PHOENIX 🤝 PAWPALZ",
     image_url: "/nfts/pawpalz.jpg",
-    details: "NFT collab with @PawPalzHL — 15 FCFS spots for their upcoming free mint.",
+    details: "NFT collab with @PawPalzHL with 15 FCFS spots for their upcoming free mint.",
     x_handle: "@PawPalzHL",
     x_link: "https://x.com/PawPalzHL",
     post_link: "https://x.com/phoenixxweb3/status/1942292884692038135",
@@ -179,7 +180,7 @@ const STATIC_COLLABS = [
     id: "capybros",
     title: "PHOENIX 🤝 CAPYBROS",
     image_url: "/nfts/capybros1.jpg",
-    details: "NFT collab with @capybros1 — 2 GTD spots for their upcoming free mint.",
+    details: "NFT collab with @capybros1 with 2 GTD spots for their upcoming free mint.",
     x_handle: "@capybros1",
     x_link: "https://x.com/capybros1",
     post_link: "https://x.com/phoenixxweb3/status/1943768846013272284",
@@ -190,7 +191,7 @@ const STATIC_COLLABS = [
     id: "lucky45",
     title: "PHOENIX 🤝 LUCKY45",
     image_url: "/nfts/lucky45.jpg",
-    details: "NFT collab with @Lucky45Protocol — WL spots for their upcoming mint.",
+    details: "NFT collab with @Lucky45Protocol with WL spots for their upcoming mint.",
     x_handle: "@Lucky45Protocol",
     x_link: "https://x.com/Lucky45Protocol",
     post_link: "https://x.com/phoenixxweb3/status/1943965290901254426",
@@ -201,7 +202,7 @@ const STATIC_COLLABS = [
     id: "remiko",
     title: "PHOENIX 🤝 REMIKO",
     image_url: "/nfts/remiko.jpg",
-    details: "NFT collab with @RemikoNFT — 5 OG spots for their upcoming mint, a derivative of @miladymaker333.",
+    details: "NFT collab with @RemikoNFT with 5 OG spots for their upcoming mint, a derivative of @miladymaker333.",
     x_handle: "@RemikoNFT",
     x_link: "https://x.com/RemikoNFT",
     post_link: "https://x.com/phoenixxweb3/status/1945176820434731010",
@@ -212,7 +213,7 @@ const STATIC_COLLABS = [
     id: "gaib",
     title: "PHOENIX 🤝 GAIB",
     image_url: "/nfts/gaib.jpg",
-    details: "NFT collab with @gaib_ai — 2 WL spots for their upcoming mint.",
+    details: "NFT collab with @gaib_ai with 2 WL spots for their upcoming mint.",
     x_handle: "@gaib_ai",
     x_link: "https://x.com/gaib_ai",
     post_link: "https://x.com/phoenixxweb3/status/1944511531699339710",
@@ -223,7 +224,7 @@ const STATIC_COLLABS = [
     id: "bitcoincousins",
     title: "PHOENIX 🤝 BITCOIN COUSINS",
     image_url: "/nfts/bitcoincousins.jpg",
-    details: "NFT collab with @BitcoinCousins — WL raffled spots for their upcoming mint.",
+    details: "NFT collab with @BitcoinCousins with WL raffled spots for their upcoming mint.",
     x_handle: "@BitcoinCousins",
     x_link: "https://x.com/BitcoinCousins",
     post_link: "https://x.com/phoenixxdao/status/1949569037673062655",
@@ -234,7 +235,7 @@ const STATIC_COLLABS = [
     id: "boogaverse",
     title: "PHOENIX 🤝 BOOGAVERSE",
     image_url: "/nfts/boogaverse.jpg",
-    details: "NFT collab with @Boogaversee — WL spots for their upcoming mint.",
+    details: "NFT collab with @Boogaversee with WL spots for their upcoming mint.",
     x_handle: "@Boogaversee",
     x_link: "https://x.com/Boogaversee",
     post_link: "https://x.com/phoenixxweb3/status/1948376199169716317",
@@ -245,7 +246,7 @@ const STATIC_COLLABS = [
     id: "addinfofi",
     title: "PHOENIX 🤝 ADDINFOFI",
     image_url: "/nfts/bitcoincousins.jpg",
-    details: "NFT collab with @add_infofi — 2 Paddy NFT GTD Whitelist Spots for their upcoming mint.",
+    details: "NFT collab with @add_infofi with 2 Paddy NFT GTD Whitelist Spots for their upcoming mint.",
     x_handle: "@add_infofi",
     x_link: "https://x.com/add_infofi",
     post_link: "https://x.com/phoenixxweb3/status/1952021225762415039",
@@ -256,7 +257,7 @@ const STATIC_COLLABS = [
     id: "yuzo",
     title: "PHOENIX 🤝 YUZO",
     image_url: "/nfts/yuzo.jpg",
-    details: "Teamed up with @yuzodotxyz for the Yuna Revelation pre-BRC2.0 mint — a programmable pixel collection powered by Ordinals-staking, BRC2.0 token logic & provenance linked to the 100M inscription.",
+    details: "Teamed up with @yuzodotxyz for the Yuna Revelation pre-BRC2.0 mint which is a programmable pixel collection powered by Ordinals-staking, BRC2.0 token logic & provenance linked to the 100M inscription.",
     x_handle: "@yuzodotxyz",
     x_link: "https://x.com/yuzodotxyz",
     post_link: "https://x.com/phoenixxweb3/status/1951610717393584603",
@@ -267,7 +268,7 @@ const STATIC_COLLABS = [
     id: "miloonchain",
     title: "PHOENIX 🤝 MiloOnChain",
     image_url: "/nfts/miloonchain.jpg",
-    details: "NFT collab with @MiloOnChains — WL raffled spots for their upcoming mint.",
+    details: "NFT collab with @MiloOnChains with WL raffled spots for their upcoming mint.",
     x_handle: "@MiloOnChains",
     x_link: "https://x.com/MiloOnChains",
     post_link: "https://x.com/phoenixxweb3/status/1957999472757060084",
@@ -278,7 +279,7 @@ const STATIC_COLLABS = [
     id: "blockstranding",
     title: "PHOENIX 🤝 BLOCKSTRANDING",
     image_url: "/nfts/blockstranding.jpg",
-    details: "NFT collab with @blockstranding — WL raffled spots for their upcoming mint.",
+    details: "NFT collab with @blockstranding with WL raffled spots for their upcoming mint.",
     x_handle: "@blockstranding",
     x_link: "https://x.com/blockstranding",
     post_link: "https://x.com/phoenixxweb3/status/1957792513311289389",
@@ -292,9 +293,8 @@ const STATIC_COLLABS = [
 function Eyebrow({ children, center }: { children: React.ReactNode; center?: boolean }) {
   return (
     <span
-      className={`font-mono text-xs tracking-[0.18em] uppercase text-ember font-semibold inline-flex items-center gap-2.5 ${
-        center ? "justify-center" : ""
-      }`}
+      className={`font-mono text-xs tracking-[0.18em] uppercase text-ember font-semibold inline-flex items-center gap-2.5 ${center ? "justify-center" : ""
+        }`}
     >
       <span className="w-4.5 h-px grad-flame inline-block" />
       {children}
@@ -334,16 +334,16 @@ function CollabCard({ collab }: { collab: Collab }) {
       <div className="p-5 relative">
         <p className="text-ash text-[0.86rem] leading-relaxed mb-4">{collab.details}</p>
         <div className="flex flex-wrap items-center gap-2">
-          
-           <a href={collab.x_link}
+
+          <a href={collab.x_link}
             target="_blank"
             rel="noreferrer"
             className="font-mono text-[0.68rem] text-ash border border-card-line rounded-full px-2 py-0.5 hover:border-ember hover:text-ember transition-colors"
           >
             {collab.x_handle}
           </a>
-          
-           <a href={collab.post_link}
+
+          <a href={collab.post_link}
             target="_blank"
             rel="noreferrer"
             className="font-mono text-[0.68rem] text-ember hover:text-bone transition-colors inline-flex items-center gap-1"
@@ -351,8 +351,8 @@ function CollabCard({ collab }: { collab: Collab }) {
             View Post ↗
           </a>
           {collab.winners_link && (
-            
-             <a href={collab.winners_link}
+
+            <a href={collab.winners_link}
               target="_blank"
               rel="noreferrer"
               className="font-mono text-[0.68rem] text-ash-dim hover:text-ember transition-colors inline-flex items-center gap-1"
@@ -366,22 +366,35 @@ function CollabCard({ collab }: { collab: Collab }) {
   );
 }
 
+function DiscordIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.031.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 13.963 13.963 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+    </svg>
+  );
+}
 /* ─── PAGE ───────────────────────────────────────────────── */
 
 export default function DaoNft() {
 
   const [collabs, setCollabs] = useState<Collab[]>(STATIC_COLLABS);
 
-useEffect(() => {
-  fetch("/api/collabs")
-    .then((r) => r.json())
-    .then((data) => {
-      if (Array.isArray(data) && data.length > 0) {
-        setCollabs([...data, ...STATIC_COLLABS]);
-      }
-    })
-    .catch(() => {});
-}, []);
+  useEffect(() => {
+    fetch("/api/collabs")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setCollabs([...data, ...STATIC_COLLABS]);
+        }
+      })
+      .catch(() => { });
+  }, []);
 
   return (
     <>
@@ -426,7 +439,7 @@ useEffect(() => {
                 <span className="flame-text">NFT space.</span>
               </h1>
               <p className="mt-5 text-[1.1rem] text-ash leading-relaxed md:max-w-none max-w-[580px]">
-                Phoenix NFT is the NFT-focused wing of the Phoenix Ecosystem serving as a community
+                Phoenix DAO is the NFT-focused wing of the Phoenix Ecosystem serving as a community
                 hub for collectors, artists, traders, and creators operating at the
                 intersection of NFTs, culture, and Web3.
               </p>
@@ -446,7 +459,7 @@ useEffect(() => {
           >
             <div className="rounded-[20px] overflow-hidden border border-card-line shadow-[0_24px_80px_-24px_rgba(255,77,28,0.25)] md:max-w-[72%] mx-auto">
               <Image
-                src="/PNFTS.jpg"
+                src="/PDAOS.jpg"
                 alt="Phoenix NFT"
                 width={1400}
                 height={400}
@@ -462,7 +475,7 @@ useEffect(() => {
           <div className="max-w-[1180px] mx-auto px-7">
             <ScrollReveal stagger className="grid grid-cols-2 md:grid-cols-4 gap-5">
               {[
-                { n: "18+", label: "NFT Collabs" },
+                { n: `${collabs.length}+`, label: "NFT Collabs" },
                 { n: "Active", label: "Status" },
                 { n: "WL,OG & GTD", label: "Access for Community" },
                 { n: "0", label: "Proprietary Collection" },
@@ -508,12 +521,12 @@ useEffect(() => {
         <div className="max-w-[1180px] mx-auto px-7 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
           {/* Text left */}
           <ScrollReveal>
-            <Eyebrow><span className="text-lg">What Phoenix NFT Is</span></Eyebrow>
+            <Eyebrow><span className="text-lg">What Phoenix DAO Is</span></Eyebrow>
             <h2 className="font-display text-[clamp(2rem,4vw,3rem)] leading-[1.04] tracking-tight mt-4">
               Community. Education. Access.
             </h2>
             <p className="mt-4 text-ash text-[1.02rem] leading-relaxed">
-              Phoenix NFT is not a collection, it&apos;s a presence and a credible,
+              Phoenix DAO is not a collection, it&apos;s a presence and a credible,
               non-speculative foothold in the NFT space that delivers real value to
               the community through education, conversation, and genuine partnerships.
             </p>
@@ -552,7 +565,7 @@ useEffect(() => {
       <section className="py-24">
         <div className="max-w-[1180px] mx-auto px-7">
           <ScrollReveal className="text-center max-w-[640px] mx-auto mb-14">
-            <Eyebrow center><span className="text-lg">What Phoenix NFT Does</span></Eyebrow>
+            <Eyebrow center><span className="text-lg">What Phoenix DAO Does</span></Eyebrow>
             <h2 className="font-display text-[clamp(2rem,4vw,3rem)] leading-[1.04] tracking-tight mt-4">
               Six ways we show up in the NFT space.
             </h2>
@@ -596,11 +609,11 @@ useEffect(() => {
             </div>
           </ScrollReveal>
 
-         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-  {collabs.map((collab) => (
-    <CollabCard key={collab.id} collab={collab} />
-  ))}
-</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {collabs.map((collab) => (
+              <CollabCard key={collab.id} collab={collab} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -612,13 +625,13 @@ useEffect(() => {
           <ScrollReveal>
             <div className="bg-card border border-card-line rounded-[18px] p-8 max-w-[800px] mx-auto">
               <h3 className="font-bold text-[1.05rem] text-ember mb-4">
-                Important: What Phoenix NFT Is Not
+                Important: What Phoenix DAO Is Not
               </h3>
               <div className="flex flex-col gap-3">
                 {[
-                  "Phoenix NFT does not operate as an NFT collection and does not currently launch or manage a proprietary NFT project.",
-                  "No Phoenix NFT collection or proprietary NFT product is live or confirmed.",
-                  "Phoenix NFT contributes cultural depth, not financial speculation.",
+                  "Phoenix DAO does not operate as an NFT collection and does not currently launch or manage a proprietary NFT project.",
+                  "No Phoenix DAO collection or proprietary NFT product is live or confirmed.",
+                  "Phoenix DAO contributes cultural depth, not financial speculation.",
                   "Any future NFT initiative will be clearly labeled as exploratory before any announcement.",
                 ].map((note) => (
                   <div key={note} className="flex gap-3 items-start">
@@ -657,14 +670,25 @@ useEffect(() => {
               Join Phoenix to be in the room when they drop.
             </p>
             <div className="flex gap-4 justify-center mt-8 flex-wrap">
-              <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                
-                 <a href="https://t.me/+fmvi1BeODZk4MGI0"
+               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+
+                <a href="https://discord.gg/J9BPKHAHp"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full grad-flame text-[#110603] font-bold text-[0.92rem] px-7 py-3.5 hover:shadow-[0_10px_30px_-8px_rgba(255,77,28,0.55)] transition-shadow"
                 >
-                    <Send size={16} />
+                  <DiscordIcon size={18} />
+                  Join  Discord 
+                </a>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+
+                <a href="https://t.me/+fmvi1BeODZk4MGI0"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full grad-flame text-[#110603] font-bold text-[0.92rem] px-7 py-3.5 hover:shadow-[0_10px_30px_-8px_rgba(255,77,28,0.55)] transition-shadow"
+                >
+                  <Send size={16} />
                   Join the Community
                 </a>
               </motion.div>
@@ -674,7 +698,7 @@ useEffect(() => {
                   className="inline-flex items-center gap-2 rounded-full border border-bone/20 text-bone font-bold text-[0.92rem] px-7 py-3.5 hover:border-ember hover:text-ember transition-colors"
                 >
                   <Sparkles size={16} />
-                   Explore the Ecosystem
+                  Explore the Ecosystem
                 </Link>
               </motion.div>
             </div>

@@ -47,7 +47,7 @@ const PROBLEMS = [
 const SOLUTION_POINTS = [
   "Real community infrastructure, not a vendor list",
   "African campus network spanning 40+ schools",
-  "153,000+ campaign views with Actual Proof of Work.",
+  "1M+ campaign views with Actual Proof of Work.",
   "27K+ X following that was built organically over 1+ year",
   "Transparent fees with no hidden markups.",
 ];
@@ -183,7 +183,7 @@ export default function Home() {
           <ScrollReveal className="max-w-[420px] mx-auto mb-7">
             <Link href="/agency" className="block">
               <MotionCard className="text-center !border-flame shadow-[0_0_0_1px_var(--flame),0_20px_50px_-20px_rgba(255,77,28,0.4)]">
-                <span className="font-mono text-[0.75rem] text-ember tracking-[0.1em]">CORE REVENUE ENGINE</span>
+                <span className="font-mono text-[0.75rem] text-ember tracking-[0.1em]">CORE ENGINE</span>
                 <h3 className="text-[1.5rem] font-bold mt-2 text-ember">Agency</h3>
               </MotionCard>
             </Link>
@@ -202,7 +202,7 @@ export default function Home() {
           </ScrollReveal>
 
           <p className="text-center mt-10 font-mono text-[0.82rem] text-ash-dim">
-           <Eyebrow>Community → Academy → Campus → Agency → Revenue</Eyebrow>
+           <Eyebrow>Community → Academy → Campus → Agency </Eyebrow>
           </p>
         </div>
       </section>
@@ -226,7 +226,7 @@ export default function Home() {
               <p className="mt-1.5 text-[0.86rem] text-ash">@phoenixxweb3, built, not bought</p>
             </MotionCard>
             <MotionCard className="text-center !border-flame/30">
-              <div className="font-mono font-bold text-[2.4rem] text-bone">122,900+</div>
+              <div className="font-mono font-bold text-[2.4rem] text-bone">1M+</div>
               <h3 className="font-bold mt-1.5">Campaign Views</h3>
               <p className="mt-1.5 text-[0.86rem] text-ash">Real reach. Documented receipts.</p>
             </MotionCard>

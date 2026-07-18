@@ -50,7 +50,7 @@ const WHAT_WE_OFFER = [
   {
     icon: "clock",
     title: "Structured Onboarding",
-    desc: "Every member enters through a defined path — no one gets thrown into the deep end alone.",
+    desc: "Every member enters through a defined path, no one gets thrown into the deep end alone.",
   },
   {
     icon: "book",
@@ -60,22 +60,22 @@ const WHAT_WE_OFFER = [
   {
     icon: "globe",
     title: "Web3 Exposure",
-    desc: "Campaigns, AMAs, activations, and opportunities across the ecosystem — you hear about them here first.",
+    desc: "Campaigns, AMAs, activations, and opportunities across the ecosystem, you hear about them here first.",
   },
   {
     icon: "handshake",
     title: "A Real Network",
-    desc: "Creators, traders, builders, students — the Phoenix community spans backgrounds, countries, and skill sets.",
+    desc: "Creators, traders, builders, students, the Phoenix community spans backgrounds, countries, and skill sets.",
   },
   {
     icon: "target",
     title: "Cross-Utility Connection",
-    desc: "House of Phoenix connects every utility. Move between Academy, Campus, Agency, and NFT — the community is the thread.",
+    desc: "House of Phoenix connects every utility. Move between Academy, Campus, Agency, and NFT. The community is the thread.",
   },
   {
     icon: "flame",
     title: "Cultural Identity",
-    desc: "Phoenix isn't just a platform. It's a shared identity — and House of Phoenix is where that identity lives.",
+    desc: "Phoenix isn't just a platform. It's a shared identity, and House of Phoenix is where that identity lives.",
   },
 ];
 
@@ -112,7 +112,7 @@ const VALUES = [
   },
   {
     title: "Every utility has a distinct focus.",
-    desc: "House of Phoenix binds them all — but each arm operates independently with its own expectations.",
+    desc: "House of Phoenix binds them all, but each arm operates independently with its own expectations.",
   },
 ];
 
@@ -121,7 +121,7 @@ const SOCIALS = [
     label: "Join on Telegram",
     href: "https://t.me/+fmvi1BeODZk4MGI0",
     icon: "send",
-    desc: "Main community hub — discussions, announcements, opportunities",
+    desc: "Main community hub where discussions, announcements and opportunities takes place",
     cta: "Join Community",
     primary: true,
   },
@@ -228,7 +228,7 @@ export default function Community() {
             <ScrollReveal stagger className="grid grid-cols-2 md:grid-cols-4 gap-5">
               {[
                 { n: "27K+", label: "X Followers" },
-                { n: "122K+", label: "Campaign Views" },
+                { n: "1M+", label: "Campaign Views" },
                 { n: "Active", label: "Status" },
                 { n: "∞", label: "Room to Grow" },
               ].map((s) => (

@@ -132,7 +132,7 @@ export default function ContactPage() {
                 Book a Discovery Call
               </motion.a>
               <motion.a
-                href="mailto:Hiswatadewale@gmail.com"
+                href="mailto:Phoenixxecosystem@gmail.com"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 rounded-full border border-bone/20 text-bone font-bold text-[0.92rem] px-7 py-3.5 hover:border-ember hover:text-ember transition-colors"
