@@ -36,10 +36,14 @@ export async function middleware(req: NextRequest) {
   // Check Supabase session
   let response = NextResponse.next({ request: req });
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
+  const url =
+    process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    "https://qdqikjbnmqbuumqawwbv.supabase.co";
+  const anonKey =
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    "placeholder-anon-key";
+
+  const supabase = createServerClient(url, anonKey, {
       cookies: {
         getAll() {
           return req.cookies.getAll();
