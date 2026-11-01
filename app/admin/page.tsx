@@ -4,7 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-type Tab = "hire" | "join" | "collabs" | "users";
+import { Course, CourseEnrollment } from "@/lib/courses-types";
+import AdminCoursesTab from "@/components/AdminCoursesTab";
+import AdminProgressTab from "@/components/AdminProgressTab";
+
+type Tab = "hire" | "join" | "collabs" | "users" | "courses" | "progress";
 type Status = "new" | "reviewed" | "accepted" | "rejected";
 
 type Submission = {
@@ -63,21 +67,58 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [updatingStatus, setUpdatingStatus] = useState(false);
 
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [enrollments, setEnrollments] = useState<CourseEnrollment[]>([]);
+
+  const fetchCoursesAndEnrollments = async () => {
+    try {
+      const [crs, enrs] = await Promise.all([
+        fetch("/api/courses").then((r) => r.json()),
+        fetch("/api/enrollments").then((r) => r.json()),
+      ]);
+      setCourses(Array.isArray(crs) ? crs : []);
+      setEnrollments(Array.isArray(enrs) ? enrs : []);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
+    async function safeJsonFetch(url: string, fallback: any = []) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) return fallback;
+        const data = await res.json();
+        return data ?? fallback;
+      } catch (err) {
+        console.error(`Error fetching ${url}:`, err);
+        return fallback;
+      }
+    }
+
     async function load() {
       setLoading(true);
-      const [h, j, c, usersData] = await Promise.all([
-        fetch("/api/submissions/hire").then((r) => r.json()),
-        fetch("/api/submissions/join").then((r) => r.json()),
-        fetch("/api/collabs").then((r) => r.json()),
-        fetch("/api/admin/users").then((r) => r.json()),
-      ]);
-      setHireData(h);
-      setJoinData(j);
-      setCollabs(c);
-      setMembers(usersData.users ?? []);
-      setUserCount(usersData.count ?? 0);
-      setLoading(false);
+      try {
+        const [h, j, c, usersData, crs, enrs] = await Promise.all([
+          safeJsonFetch("/api/submissions/hire", []),
+          safeJsonFetch("/api/submissions/join", []),
+          safeJsonFetch("/api/collabs", []),
+          safeJsonFetch("/api/admin/users", { users: [], count: 0 }),
+          safeJsonFetch("/api/courses", []),
+          safeJsonFetch("/api/enrollments", []),
+        ]);
+        setHireData(Array.isArray(h) ? h : []);
+        setJoinData(Array.isArray(j) ? j : []);
+        setCollabs(Array.isArray(c) ? c : []);
+        setMembers(usersData?.users ?? []);
+        setUserCount(usersData?.count ?? 0);
+        setCourses(Array.isArray(crs) ? crs : []);
+        setEnrollments(Array.isArray(enrs) ? enrs : []);
+      } catch (err) {
+        console.error("Error loading admin dashboard data:", err);
+      } finally {
+        setLoading(false);
+      }
     }
     load();
   }, []);
@@ -192,12 +233,12 @@ export default function AdminPage() {
 
       {/* Tab bar */}
       <div className="border-b border-card-line bg-ink sticky top-[60px] z-40">
-        <div className="max-w-[1400px] mx-auto px-3 md:px-6 flex py-2.5 gap-1.5">
-          {(["hire", "join", "collabs", "users"] as Tab[]).map((t) => (
+        <div className="max-w-[1400px] mx-auto px-3 md:px-6 flex py-2.5 gap-1.5 overflow-x-auto">
+          {(["hire", "join", "collabs", "users", "courses", "progress"] as Tab[]).map((t) => (
             <button
               key={t}
               onClick={() => { setTab(t); setSelected(null); }}
-              className={`flex-1 flex items-center justify-center gap-1.5 px-2 py-2 rounded-[10px] font-semibold text-[0.72rem] md:text-[0.82rem] border transition-all ${
+              className={`flex-1 min-w-[100px] flex items-center justify-center gap-1.5 px-2 py-2 rounded-[10px] font-semibold text-[0.72rem] md:text-[0.82rem] border transition-all whitespace-nowrap ${
                 tab === t
                   ? "grad-flame text-[#110603] border-transparent"
                   : "border-card-line text-ash hover:border-ember hover:text-ember"
@@ -210,10 +251,14 @@ export default function AdminPage() {
                   ? "✦ Applications"
                   : t === "collabs"
                   ? "🖼️ NFT Collabs"
-                  : `👥 Members (${userCount})`}
+                  : t === "users"
+                  ? `👥 Members (${userCount})`
+                  : t === "courses"
+                  ? `🎓 Courses (${courses.length})`
+                  : `📊 Progress (${enrollments.length})`}
               </span>
               <span className="sm:hidden">
-                {t === "hire" ? "🚀" : t === "join" ? "✦" : t === "collabs" ? "🖼️" : "👥"}
+                {t === "hire" ? "🚀" : t === "join" ? "✦" : t === "collabs" ? "🖼️" : t === "users" ? "👥" : t === "courses" ? "🎓" : "📊"}
               </span>
               {t === "hire" && counts.hireNew > 0 && (
                 <span className="bg-flame text-white text-[0.6rem] font-bold rounded-full px-1.5 py-0.5">
@@ -376,8 +421,24 @@ export default function AdminPage() {
         </div>
       )}
 
+      {/* ── COURSES TAB ── */}
+      {tab === "courses" && (
+        <AdminCoursesTab
+          courses={courses}
+          onCourseUpdated={fetchCoursesAndEnrollments}
+        />
+      )}
+
+      {/* ── PROGRESS TAB ── */}
+      {tab === "progress" && (
+        <AdminProgressTab
+          enrollments={enrollments}
+          courses={courses}
+        />
+      )}
+
       {/* ── SUBMISSIONS TABS (hire / join) ── */}
-      {tab !== "collabs" && tab !== "users" && (
+      {(tab === "hire" || tab === "join") && (
         <>
           {/* DESKTOP */}
           <div className="hidden md:flex max-w-[1400px] mx-auto px-6 py-8 gap-6 h-[calc(100vh-120px)]">

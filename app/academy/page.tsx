@@ -196,6 +196,20 @@ export default function Academy() {
                 the structured gateway every member passes through before entering the broader
                 utility network.
               </p>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/academy/courses"
+                  className="inline-flex items-center gap-2 rounded-full grad-flame text-[#110603] font-bold text-[0.92rem] px-6 py-3 hover:shadow-[0_10px_30px_-8px_rgba(255,77,28,0.55)] transition-shadow"
+                >
+                  <GraduationCap size={18} /> Browse Free & Paid Courses
+                </Link>
+                <Link
+                  href="#phases"
+                  className="inline-flex items-center gap-2 rounded-full border border-bone/20 text-bone font-bold text-[0.92rem] px-6 py-3 hover:border-ember hover:text-ember transition-colors"
+                >
+                  View Onboarding Phases
+                </Link>
+              </div>
             </motion.div>
           </div>
 
@@ -458,16 +472,23 @@ export default function Academy() {
       <section className="py-24">
         <div className="max-w-[1180px] mx-auto px-7">
           <ScrollReveal className="max-w-[680px] mx-auto text-center">
-            <Eyebrow center><span className="text-lg">Coming Soon</span></Eyebrow>
+            <Eyebrow center><span className="text-lg">Now Live</span></Eyebrow>
             <h2 className="font-display text-[clamp(2rem,4vw,3rem)] leading-[1.04] tracking-tight mt-4">
-              Certifications & paid tracks are in development.
+              Explore Academy Courses & Certifications.
             </h2>
             <p className="mt-5 text-ash text-[1.02rem] leading-relaxed">
-              Modular learning tracks, skill-based progression paths, and standardised
-              certification programs are actively being built. When they launch, Academy
-              graduates will have recognised credentials and direct pathways into paid
-              work across the ecosystem.
+              Modular learning tracks, downloadable curriculum guides, and interactive
+              quizzes with passing thresholds are now available. Access free foundation courses or
+              enroll in specialized paid tracks to earn verifiable credentials.
             </p>
+            <div className="mt-8">
+              <Link
+                href="/academy/courses"
+                className="inline-flex items-center gap-2 rounded-full grad-flame text-[#110603] font-bold text-[0.92rem] px-8 py-3.5 hover:shadow-[0_10px_30px_-8px_rgba(255,77,28,0.55)] transition-shadow"
+              >
+                <GraduationCap size={18} /> Open Course Catalog
+              </Link>
+            </div>
             <div className="flex flex-wrap justify-center gap-3 mt-8">
               {[
                 "Modular Learning Tracks",
